@@ -4,7 +4,7 @@ import MoviesGrid from "./MoviesGrid";
 const Main = ({ showSpinner, searched }) => {
   return (
     <div style={{ marginBottom: "12%" }}>
-      {/* {showSpinner && (
+      {showSpinner && (
         <Spinner
           style={{ textAlign: "center", marginTop: "25%", marginLeft: "50%" }}
           id="spinner"
@@ -12,7 +12,7 @@ const Main = ({ showSpinner, searched }) => {
           animation="grow"
           variant="info"
         />
-      )} */}
+      )}
 
       <MoviesGrid searched={searched} />
     </div>

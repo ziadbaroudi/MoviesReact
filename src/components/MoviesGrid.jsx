@@ -3,10 +3,12 @@ import MovieItem from "./MovieItem";
 
 const MoviesGrid = (searched) => {
   let results = searched.searched.results;
-  console.log(results);
-
   return (
-    <ul>{results && results.map((movie) => <MovieItem movie={movie} />)}</ul>
+    <ul
+      style={{ listStyle: "none" }}
+      className="d-flex flex-wrap justify-content-center">
+      {results && results.map((movie) => <MovieItem movie={movie} />)}
+    </ul>
   );
 };
 
