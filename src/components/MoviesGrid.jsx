@@ -1,11 +1,13 @@
-import React from 'react'
+import React from "react";
+import MovieItem from "./MovieItem";
 
-const MoviesGrid = () => {
-    return (
-        <div>
-            
-        </div>
-    )
-}
+const MoviesGrid = (searched) => {
+  let results = searched.searched.results;
+  console.log(results);
 
-export default MoviesGrid
+  return (
+    <ul>{results && results.map((movie) => <MovieItem movie={movie} />)}</ul>
+  );
+};
+
+export default MoviesGrid;
