@@ -1,25 +1,37 @@
-import {Button, Row, Col, Form, FormControl } from "react-bootstrap";
+import { Button, Row, Col, Form, FormControl } from "react-bootstrap";
 import React, { useState } from "react";
 
-const Searchbar = () => {
+const Searchbar = ({ setShowSpinner, handleQuery }) => {
   const [searchTerm, setSearchTerm] = useState("");
-  const handleChange = (event) => {
-    setSearchTerm(() => {
-      console.log(searchTerm);
-      return event.target.value;
-    });
-  };
-
   return (
-    <Form inline>
-          <Row>
-            <Col xs={5} md={8} className ="ml-3 px-0">
-              <FormControl onChange = { handleChange } type="text" placeholder="Search" className="mr-sm-2" />
-            </Col>
-            <Col className="pl-sm-5 pl-md-0 ml-0 ">
-              <Button variant="outline-info">Search</Button>
-            </Col>
-          </Row>
+    <Form
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleQuery(searchTerm);
+      }}>
+      <Row>
+        <Col xs={5} md={8} className="ml-3 px-0">
+          <FormControl
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+            }}
+            type="text"
+            placeholder="Search"
+            className="mr-sm-2"
+          />
+        </Col>
+        <Col className="pl-sm-5 pl-md-0 ml-0 ">
+          <Button
+            value="submit"
+            onClick={() => {
+              setShowSpinner(true);
+            }}
+            variant="outline-info"
+            type="submit">
+            Search
+          </Button>
+        </Col>
+      </Row>
     </Form>
   );
 };
