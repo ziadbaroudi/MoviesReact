@@ -1,7 +1,7 @@
 import { Button, Row, Col, Form, FormControl } from "react-bootstrap";
 import React, { useState } from "react";
 
-const Searchbar = ({ setShowSpinner, handleQuery }) => {
+const Searchbar = ({ handleQuery }) => {
   const [searchTerm, setSearchTerm] = useState("");
   return (
     <Form
@@ -21,13 +21,7 @@ const Searchbar = ({ setShowSpinner, handleQuery }) => {
           />
         </Col>
         <Col className="pl-sm-5 pl-md-0 ml-0 ">
-          <Button
-            value="submit"
-            onClick={() => {
-              setShowSpinner(true);
-            }}
-            variant="outline-info"
-            type="submit">
+          <Button value="submit" variant="outline-info" type="submit">
             Search
           </Button>
         </Col>

@@ -1,13 +1,14 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navi from "./components/Navi";
 import Main from "./components/Main";
 import Footer from "./components/Footer";
+
 export default function App() {
-  const [showSpinner, setShowSpinner] = useState(true);
-  // const [url, setUrl] = useState("");
   const [searched, setSearched] = useState([]);
   const[genre, setGenre] = useState([])
+  const [genreId, setGenreId] = useState([])
+  const[popular, setPopular] = useState([])
   const TMDB_BASE_URL = "https://api.themoviedb.org"
   
   const constructUrl = (path, query) => {
@@ -20,29 +21,33 @@ export default function App() {
     fetch(url)
       .then((resp) => resp.json())
       .then((data) => {
-        setShowSpinner(false)
         setSearched(data)
       });
   }
-
-  let fetchGenre = () => {
+  useEffect(() => {
     let path = "3/genre/movie/list"
     let url = `${TMDB_BASE_URL}/${path}?api_key=78d25a5f3730fb9c31adbb75ca051bf6`
-    console.log(url)
     fetch(url)
     .then((resp)=> resp.json())
     .then((data)=>{
-      // console.log(data)
       setGenre(data)}
       )
-  } 
+  }, [])
 
-
-
+  useEffect(() => {
+    let CategoryId = genreId
+    let path = "3/discover/movie"
+    let url = `${TMDB_BASE_URL}/${path}?api_key=78d25a5f3730fb9c31adbb75ca051bf6&with_genres=${CategoryId}`
+    fetch(url)
+    .then((resp)=>resp.json())
+    .then((data)=>{
+      setPopular(data)      
+  })
+}, [])
   return (
     <div className="App">
-      <Navi setShowSpinner={setShowSpinner} fetchGenre = {fetchGenre} handleQuery={handleQuery} genre={genre}/>
-      <Main showSpinner={showSpinner} searched={searched}/>
+      <Navi handleQuery={handleQuery} setGenre={setGenre} genre={genre} setGenreId = {setGenreId} />
+      <Main   searched={searched} popular={popular} genreId={genreId} />
       <Footer />
     </div>
   );

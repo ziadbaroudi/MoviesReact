@@ -1,7 +1,17 @@
 import React from "react";
+import { NavDropdown } from "react-bootstrap";
 
-const genre = (genre) => {
-  return <div></div>;
+const Genre = ({ genre }) => {
+  return (
+    <>
+      {genre.genres &&
+        genre.genres.map((gen) => {
+          return (
+            <NavDropdown.Item eventKey={gen.id}> {gen.name} </NavDropdown.Item>
+          );
+        })}
+    </>
+  );
 };
 
-export default genre;
+export default Genre;

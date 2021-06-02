@@ -2,7 +2,6 @@ import React from "react";
 import { Card, Badge } from "react-bootstrap";
 
 const MovieItem = ({ movie }) => {
-  console.log(movie);
   const base_img_url = "https://image.tmdb.org/t/p/w500";
   let poster_path = base_img_url + movie.poster_path;
 
