@@ -6,7 +6,7 @@ import Footer from "./components/Footer";
 
 export default function App() {
   const [searched, setSearched] = useState([]);
-  const[genre, setGenre] = useState([])
+  const[genre, setGenre] = useState([]) 
   const [genreId, setGenreId] = useState([])
   const[popular, setPopular] = useState([])
   const TMDB_BASE_URL = "https://api.themoviedb.org"
@@ -43,11 +43,12 @@ export default function App() {
     .then((data)=>{
       setPopular(data)      
   })
-}, [])
+}, [genreId])
+console.log(popular)
   return (
     <div className="App">
-      <Navi handleQuery={handleQuery} setGenre={setGenre} genre={genre} setGenreId = {setGenreId} />
-      <Main   searched={searched} popular={popular} genreId={genreId} />
+      <Navi handleQuery={handleQuery} setGenre={setGenre} genre={genre} setGenreId = {setGenreId} popular = {popular} />
+      <Main searched={searched} popular={popular} genreId={genreId} />
       <Footer />
     </div>
   );
