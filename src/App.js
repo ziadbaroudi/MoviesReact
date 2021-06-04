@@ -6,6 +6,8 @@ import Footer from "./components/Footer";
 
 export default function App() {
   const [searched, setSearched] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [genring, setGenring] = useState(false)
   const[genre, setGenre] = useState([]) 
   const [genreId, setGenreId] = useState([])
   const[popular, setPopular] = useState([])
@@ -14,22 +16,24 @@ export default function App() {
   const constructUrl = (path, query) => {
     return `${TMDB_BASE_URL}/${path}?api_key=78d25a5f3730fb9c31adbb75ca051bf6&query=${query}`;
   };
-  
-  let handleQuery = (query) => {
+  useEffect (()=> {
     let path = "3/search/movie"
-    let url = constructUrl(path, query)
+    let url = constructUrl(path, searchTerm)
     fetch(url)
       .then((resp) => resp.json())
       .then((data) => {
+        setGenring(false)
         setSearched(data)
       });
-  }
+  }, [searchTerm])
+
   useEffect(() => {
     let path = "3/genre/movie/list"
     let url = `${TMDB_BASE_URL}/${path}?api_key=78d25a5f3730fb9c31adbb75ca051bf6`
     fetch(url)
     .then((resp)=> resp.json())
     .then((data)=>{
+      
       setGenre(data)}
       )
   }, [])
@@ -41,14 +45,15 @@ export default function App() {
     fetch(url)
     .then((resp)=>resp.json())
     .then((data)=>{
+      setGenring(true)
       setPopular(data)      
   })
+  
 }, [genreId])
-console.log(popular)
   return (
     <div className="App">
-      <Navi handleQuery={handleQuery} setGenre={setGenre} genre={genre} setGenreId = {setGenreId} popular = {popular} />
-      <Main searched={searched} popular={popular} genreId={genreId} />
+      <Navi searchTerm={searchTerm} setSearchTerm={setSearchTerm} setGenre={setGenre} genre={genre} setGenreId = {setGenreId} popular = {popular} />
+      <Main genring = {genring} searched={searched} popular={popular} genreId={genreId} />
       <Footer />
     </div>
   );

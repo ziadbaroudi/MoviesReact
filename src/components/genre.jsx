@@ -7,7 +7,10 @@ const Genre = ({ genre }) => {
       {genre.genres &&
         genre.genres.map((gen) => {
           return (
-            <NavDropdown.Item eventKey={gen.id}> {gen.name} </NavDropdown.Item>
+            <NavDropdown.Item value={gen.id} eventKey={gen.id}>
+              {" "}
+              {gen.name}{" "}
+            </NavDropdown.Item>
           );
         })}
     </>

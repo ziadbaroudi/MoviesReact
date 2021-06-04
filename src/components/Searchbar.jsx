@@ -1,13 +1,12 @@
 import { Button, Row, Col, Form, FormControl } from "react-bootstrap";
-import React, { useState } from "react";
+import React from "react";
 
-const Searchbar = ({ handleQuery }) => {
-  const [searchTerm, setSearchTerm] = useState("");
+const Searchbar = ({ searchTerm, setSearchTerm }) => {
   return (
     <Form
       onSubmit={(e) => {
         e.preventDefault();
-        handleQuery(searchTerm);
+        setSearchTerm(searchTerm);
       }}>
       <Row>
         <Col xs={5} md={8} className="ml-3 px-0">

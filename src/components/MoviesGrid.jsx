@@ -1,9 +1,19 @@
 import React from "react";
 import MovieItem from "./MovieItem";
 
-const MoviesGrid = ({ searched, popular, genreId }) => {
+const MoviesGrid = ({ searched, popular, genring }) => {
   let results = searched.results;
   let popularResults = popular.results;
+  if (genring) {
+    return (
+      <ul
+        style={{ listStyle: "none" }}
+        className="d-flex flex-wrap justify-content-center">
+        {popularResults &&
+          popularResults.map((movie, i) => <MovieItem movie={movie} />)}
+      </ul>
+    );
+  }
   return (
     <ul
       style={{ listStyle: "none" }}
