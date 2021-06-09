@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { Container, Row, Col, Badge, Carousel, Image } from "react-bootstrap";
+import { useParams, Link } from "react-router-dom";
+import { Container, Row, Col, Badge } from "react-bootstrap";
 import Actor from "./Actor";
 const MoviePage = () => {
   const [movieInfo, setMovieInfo] = useState([]);
@@ -35,9 +35,10 @@ const MoviePage = () => {
     )
       .then((resp) => resp.json())
       .then((data) => {
+        console.log(data);
         setActors(data);
       });
-  }, [actors]);
+  }, []);
 
   return (
     <Container fluid className="ml-md-2 mt-4 mb-2">
@@ -116,7 +117,11 @@ const MoviePage = () => {
           }}
           className="d-flex pl-0">
           {actors.cast &&
-            actors.cast.map((actor, i) => <Actor key={`${i}`} actor={actor} />)}
+            actors.cast.map((actor, i) => (
+              <Link to={`/person/${actor.id}`}>
+                <Actor key={`${i}`} actor={actor} />
+              </Link>
+            ))}
         </ul>
       </Row>
     </Container>

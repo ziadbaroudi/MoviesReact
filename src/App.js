@@ -4,6 +4,7 @@ import Navi from "./components/Navi";
 import Main from "./components/Main";
 import Footer from "./components/Footer";
 import MoviePage from "./components/MoviePage"
+import ActorPage from "./components/ActorPage"
 import {BrowserRouter as Router, Route } from "react-router-dom";
 import { StateContext } from "../src/StateProvider";
 export default function App() {
@@ -70,6 +71,7 @@ export default function App() {
               <Route path="/" exact>
                 <Main genring = {genring}  genreId={genreId}  />
               </Route>
+              <Route path="/person/:id" component={ActorPage} />
           </Router>
           <Footer />
     </div>
