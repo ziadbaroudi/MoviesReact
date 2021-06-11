@@ -1,12 +1,12 @@
 import { Button, Row, Col, Form, FormControl } from "react-bootstrap";
 import React from "react";
 
-const Searchbar = ({ setSearching, searchTerm, setSearchTerm }) => {
+const Searchbar = ({ searchTerm, setSearchTerm }) => {
   return (
     <Form
       onSubmit={(e) => {
         e.preventDefault();
-        setSearching(true);
+
         setSearchTerm(searchTerm);
       }}>
       <Row>

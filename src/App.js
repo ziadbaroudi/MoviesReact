@@ -9,8 +9,9 @@ import {BrowserRouter as Router, Route } from "react-router-dom";
 import { StateContext } from "../src/StateProvider";
 export default function App() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [genring, setGenring] = useState(false)
-  const [genreId, setGenreId] = useState([])
+  const [genring, setGenring] = useState(false);
+  const [genreId, setGenreId] = useState([]);
+
   const [state, dispatch] = useContext(StateContext);
   
   const TMDB_BASE_URL = "https://api.themoviedb.org"
@@ -61,7 +62,17 @@ export default function App() {
       dispatch({ type: "SET_POPULAR_GENRE", popularGenre: data.results })
          
   })
-}, [genreId])
+}, [genreId]);
+useEffect (()=>{
+  let url = `https://api.themoviedb.org/3/trending/movie/week?api_key=78d25a5f3730fb9c31adbb75ca051bf6`
+  fetch(url) 
+  .then((resp) =>resp.json())
+  .then((data) =>  {
+    
+    dispatch({ type: "SET_TRENDING", trending: data.results })
+})
+},[])
+ 
 
   return (
     <div className="App">

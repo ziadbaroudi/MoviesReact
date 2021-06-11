@@ -44,7 +44,7 @@ const MoviePage = () => {
     <Container fluid className="ml-md-2 mt-4 mb-2">
       <Row className="d-flex justify-content-between">
         <h2 className="display-3">{movieInfo.original_title}</h2>
-        <div className="d-flex justify-content-center align-items-center ">
+        {/* <div className="d-flex justify-content-center align-items-center ">
           <h3
             className="pb-5"
             style={{ fontSize: "35px", fontWeight: "lighter" }}>
@@ -66,7 +66,7 @@ const MoviePage = () => {
                 <p className="lead">{actor.original_name}</p>
               </div>
             ))}
-        </div>
+        </div> */}
       </Row>
       <Row>
         <Col className="ml-0 ml-md-2 p-0">
@@ -119,7 +119,11 @@ const MoviePage = () => {
           {actors.cast &&
             actors.cast.map((actor, i) => (
               <Link to={`/person/${actor.id}`}>
-                <Actor key={`${i}`} actor={actor} />
+                <ul
+                  className="d-flex justify-content-around align-items-center"
+                  style={{ width: "15vw", listStyle: "none" }}>
+                  <Actor key={`${i}`} actor={actor} />
+                </ul>
               </Link>
             ))}
         </ul>

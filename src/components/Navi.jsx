@@ -5,7 +5,7 @@ import SearchBar from "./Searchbar";
 import Genre from "./Genre";
 import "../Custom.css";
 
-const Navi = ({ setSearchTerm, searchTerm, setGenreId, setSearching }) => {
+const Navi = ({ setSearchTerm, searchTerm, setGenreId }) => {
   return (
     <Navbar bg="dark" className="px-0">
       <Container fluid className="mx-0 px-0">
@@ -32,11 +32,7 @@ const Navi = ({ setSearchTerm, searchTerm, setGenreId, setSearching }) => {
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
-        <SearchBar
-          setSearching={setSearching}
-          setSearchTerm={setSearchTerm}
-          searchTerm={searchTerm}
-        />
+        <SearchBar setSearchTerm={setSearchTerm} searchTerm={searchTerm} />
       </Container>
     </Navbar>
   );
