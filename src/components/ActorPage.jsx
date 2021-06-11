@@ -11,7 +11,6 @@ function ActorPage() {
       https://api.themoviedb.org/3/person/${actorId.id}?api_key=78d25a5f3730fb9c31adbb75ca051bf6&language=en-US`)
       .then((resp) => resp.json())
       .then((data) => {
-        console.log(data);
         setActor(data);
       });
   }, []);

@@ -35,7 +35,6 @@ const MoviePage = () => {
     )
       .then((resp) => resp.json())
       .then((data) => {
-        console.log(data);
         setActors(data);
       });
   }, []);
@@ -44,29 +43,6 @@ const MoviePage = () => {
     <Container fluid className="ml-md-2 mt-4 mb-2">
       <Row className="d-flex justify-content-between">
         <h2 className="display-3">{movieInfo.original_title}</h2>
-        {/* <div className="d-flex justify-content-center align-items-center ">
-          <h3
-            className="pb-5"
-            style={{ fontSize: "35px", fontWeight: "lighter" }}>
-            Lead Characters:
-          </h3>
-          {actors.cast &&
-            actors.cast.slice(0, 3).map((actor) => (
-              <div className="pt-3 mr-4">
-                <img
-                  style={{
-                    width: "100px",
-                    height: "105px",
-                    borderRadius: "50%",
-                  }}
-                  src={
-                    "https://image.tmdb.org/t/p/w500" + `${actor.profile_path}`
-                  }
-                />
-                <p className="lead">{actor.original_name}</p>
-              </div>
-            ))}
-        </div> */}
       </Row>
       <Row>
         <Col className="ml-0 ml-md-2 p-0">

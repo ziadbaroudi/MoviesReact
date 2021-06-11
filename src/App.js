@@ -11,7 +11,6 @@ export default function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [genring, setGenring] = useState(false);
   const [genreId, setGenreId] = useState([]);
-
   const [state, dispatch] = useContext(StateContext);
   
   const TMDB_BASE_URL = "https://api.themoviedb.org"
@@ -68,7 +67,6 @@ useEffect (()=>{
   fetch(url) 
   .then((resp) =>resp.json())
   .then((data) =>  {
-    
     dispatch({ type: "SET_TRENDING", trending: data.results })
 })
 },[])
@@ -79,10 +77,10 @@ useEffect (()=>{
           <Router>
               <Navi searchTerm={searchTerm} setSearchTerm={setSearchTerm} setGenreId = {setGenreId} /> 
               <Route path="/moviepage/:title" component={MoviePage}/>
+              <Route path="/person/:id" component={ActorPage} />
               <Route path="/" exact>
                 <Main genring = {genring}  genreId={genreId}  />
               </Route>
-              <Route path="/person/:id" component={ActorPage} />
           </Router>
           <Footer />
     </div>

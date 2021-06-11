@@ -12,7 +12,6 @@ function Trending() {
       .then((data) => setUpcoming(data));
   }, []);
   const [state] = useContext(StateContext);
-  console.log(state);
   const base_img_url = "https://image.tmdb.org/t/p/w500";
   let trendingMovies = state.trending[0];
   return (
